@@ -1,118 +1,327 @@
-import React, { FC } from "react";
+import React, { useState } from 'react';
 
-const Contatos: FC = () => {
+// Interface para os dados da unidade
+interface Unidade {
+  nome: string;
+  endereco: string;
+  telefone?: string;
+  email?: string;
+  horario?: string;
+}
+
+const Contato: React.FC = () => {
+  const [unidadeSelecionada, setUnidadeSelecionada] = useState<Unidade | null>(null);
+  const [modalAberto, setModalAberto] = useState(false);
+
+  // Sua API Key do Google Maps
+  const GOOGLE_MAPS_API_KEY = 'AIzaSyDYhuJ_0yW-Zo6kYwFpBVnRkvarSOpjw4A';
+
+  // Função para abrir o modal com a unidade selecionada
+  const abrirModal = (unidade: Unidade) => {
+    setUnidadeSelecionada(unidade);
+    setModalAberto(true);
+  };
+
+  // Função para fechar o modal
+  const fecharModal = () => {
+    setModalAberto(false);
+    setUnidadeSelecionada(null);
+  };
+
+  // Fechar modal ao clicar fora
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      fecharModal();
+    }
+  };
+
+  // Lista de unidades com dados completos
+  const unidades: Unidade[] = [
+    {
+      nome: "Instituto Central (ICHC)",
+      endereco: "Av. Dr. Enéas de Carvalho Aguiar, 255 – Cerqueira César – São Paulo/SP",
+      telefone: "(11) 2661-7000",
+      email: "ichc@hc.fm.usp.br",
+      horario: "24 horas"
+    },
+    {
+      nome: "Prédio dos Ambulatórios (PAMB)",
+      endereco: "Av. Dr. Enéas de Carvalho Aguiar, 155 – Cerqueira César – São Paulo/SP",
+      telefone: "(11) 2661-6000",
+      horario: "Segunda a Sexta, 7h às 18h"
+    },
+    {
+      nome: "Instituto de Psiquiatria (IPq)",
+      endereco: "Rua Dr. Ovídio Pires de Campos, 785 – Cerqueira César – São Paulo/SP",
+      telefone: "(11) 2661-7500",
+      email: "ipq@hc.fm.usp.br",
+      horario: "24 horas"
+    },
+    {
+      nome: "Instituto de Ortopedia e Traumatologia (IOT)",
+      endereco: "Rua Dr. Ovídio Pires de Campos, 333 – Cerqueira César – São Paulo/SP",
+      telefone: "(11) 2661-7300",
+      horario: "Segunda a Sexta, 7h às 19h"
+    },
+    {
+      nome: "Instituto de Medicina Física e Reabilitação (IMRea)",
+      endereco: "Eixo Rosa do Complexo HC, nº 7 – Portão 3 do InReal – São Paulo/SP",
+      telefone: "(11) 2661-7200",
+      horario: "Segunda a Sexta, 7h às 18h"
+    },
+    {
+      nome: "Instituto da Criança e do Adolescente (ICr)",
+      endereco: "Av. Dr. Enéas de Carvalho Aguiar, 647 – Cerqueira César – São Paulo/SP",
+      telefone: "(11) 2661-8500",
+      horario: "24 horas"
+    },
+    {
+      nome: "Instituto do Coração (InCor)",
+      endereco: "Av. Dr. Enéas de Carvalho Aguiar, 44 – Cerqueira César – São Paulo/SP",
+      telefone: "(11) 2661-5000",
+      email: "incor@hc.fm.usp.br",
+      horario: "24 horas"
+    },
+    {
+      nome: "Instituto de Radiologia (InRad)",
+      endereco: "Rua Dr. Ovídio Pires de Campos, 75 – Cerqueira César – São Paulo/SP",
+      telefone: "(11) 2661-6000",
+      horario: "Segunda a Sexta, 7h às 19h"
+    },
+    {
+      nome: "Instituto do Câncer do Estado de São Paulo (ICESP)",
+      endereco: "Av. Dr. Arnaldo, 251 – Cerqueira César – São Paulo/SP",
+      telefone: "(11) 3893-2000",
+      horario: "Segunda a Sexta, 7h às 19h"
+    },
+    {
+      nome: "Instituto Perdizes (IPer)",
+      endereco: "Rua Caiubi, 1142 – Perdizes – São Paulo/SP",
+      telefone: "(11) 2661-7900",
+      horario: "Segunda a Sexta, 7h às 18h"
+    }
+  ];
+
+  // Função para gerar URL do Google Maps Embed
+  const getGoogleMapsUrl = (endereco: string) => {
+    const query = encodeURIComponent(`${endereco}, São Paulo, Brasil`);
+    return `https://www.google.com/maps/embed/v1/place?key=${GOOGLE_MAPS_API_KEY}&q=${query}&zoom=16`;
+  };
+
+  // Função para abrir no Google Maps externo
+  const abrirNoGoogleMaps = (endereco: string) => {
+    const query = encodeURIComponent(`${endereco}, São Paulo, Brasil`);
+    window.open(`https://www.google.com/maps/search/?api=1&query=${query}`, '_blank');
+  };
+
   return (
-    <main className="font-poppins bg-[#f9f9f9] text-gray-800 px-6 py-10">
-      {/* Seção de mapa */}
-      <section className="map-container bg-white shadow-md rounded-2xl p-6 mb-10">
-        <h2 className="text-2xl font-bold text-[#004aad] mb-4">Localização</h2>
-        <iframe
-          title="Hospital das Clínicas"
-          width="100%"
-          height={450}
-          className="rounded-xl mb-4"
-          style={{ border: 0 }}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.858434573572!2d-46.669848!3d-23.55703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5b2b4b4b4b4b%3A0x94ce5b2b4b4b4b4b!2sHospital%20das%20Cl%C3%ADnicas%20da%20USP!5e0!3m2!1spt-BR!2sbr!4v1633021223456!5m2!1spt-BR!2sbr"
-        />
-        <p className="text-gray-700">
-          <strong>Endereço:</strong> Av. Dr. Enéas de Carvalho Aguiar, 255 – Cerqueira César, São Paulo, SP – CEP 05403-000
-        </p>
-      </section>
+    <div className="min-h-screen bg-gray-50 py-12">
+      <div className="container mx-auto px-4 max-w-6xl">
+        <h1 className="text-4xl font-bold text-gray-800 mb-8">Contato</h1>
+        
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Seção de Contato */}
+          <div className="space-y-8">
+            <section className="bg-white rounded-lg shadow-md p-6">
+              <h2 className="text-2xl font-semibold text-gray-700 mb-4">Ouvidoria Geral</h2>
+              <div className="space-y-3">
+                <p className="text-gray-600">
+                  <strong className="text-gray-800">E-mail:</strong><br />
+                  <a href="mailto:ouvidoria.geral@hc.fm.usp.br" className="text-blue-600 hover:text-blue-800 underline">
+                    ouvidoria.geral@hc.fm.usp.br
+                  </a>
+                </p>
+                <p className="text-gray-600">
+                  <strong className="text-gray-800">Telefones:</strong><br />
+                  <a href="tel:1126611048" className="text-blue-600 hover:text-blue-800 underline">(11) 2661-1048</a><br />
+                  <a href="tel:1126611561" className="text-blue-600 hover:text-blue-800 underline">(11) 2661-1561</a>
+                </p>
+              </div>
+            </section>
 
-      {/* Seção de contatos */}
-      <section className="contatos bg-white shadow-md rounded-2xl p-6 mb-10">
-        <h2 className="text-2xl font-bold text-[#004aad] mb-6">Contatos</h2>
-        <div className="space-y-3 text-gray-700">
-          <p><strong>Telefone Geral:</strong> (11) 2661-0000</p>
-          <p>
-            <strong>E-mail Geral:</strong>{" "}
-            <a href="mailto:superintendencia.pa@hc.fm.usp.br" className="text-[#004aad] hover:text-[#ffd700]">
-              superintendencia.pa@hc.fm.usp.br
-            </a>
-          </p>
-          <p><strong>Central de Atendimento:</strong> (11) 2661-7025</p>
-          <p>
-            <strong>Ouvidoria:</strong>{" "}
-            <a href="mailto:ouvidoria.umarizal.imrea@hc.fm.usp.br" className="text-[#004aad] hover:text-[#ffd700]">
-              ouvidoria.umarizal.imrea@hc.fm.usp.br
-            </a>
-          </p>
-          <p><strong>Central de Agendamento:</strong> (11) 3066-3000</p>
-          <p><strong>Central de Triagem:</strong> (11) 3069-7660</p>
-          <p><strong>Instituto de Psiquiatria - Autorizações:</strong> (11) 2661-9825 / (11) 2661-9829</p>
-          <p>
-            <strong>E-mail de Autorizações:</strong>{" "}
-            <a href="mailto:autorizacaoss.ipq@hc.fm.usp.br" className="text-[#004aad] hover:text-[#ffd700]">
-              autorizacaoss.ipq@hc.fm.usp.br
-            </a>
-          </p>
-          <p>
-            <strong>Instituto do Coração (InCor):</strong>{" "}
-            <a href="mailto:incor@hc.fm.usp.br" className="text-[#004aad] hover:text-[#ffd700]">
-              incor@hc.fm.usp.br
-            </a>
-          </p>
-          <p>
-            <strong>Disciplina de Cirurgia Geral e Trauma:</strong>{" "}
-            <a href="mailto:trauma.ichc@hc.fm.usp.br" className="text-[#004aad] hover:text-[#ffd700]">
-              trauma.ichc@hc.fm.usp.br
-            </a>
-          </p>
-          <p><strong>Central de Atendimento do HCX Fmusp:</strong> (11) 2661-7025</p>
-          <p>
-            <strong>E-mail do HCX Fmusp:</strong>{" "}
-            <a href="mailto:hcxonline.hcx@hc.fm.usp.br" className="text-[#004aad] hover:text-[#ffd700]">
-              hcxonline.hcx@hc.fm.usp.br
-            </a>
-          </p>
+            <section className="bg-white rounded-lg shadow-md p-6">
+              <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+                Redes Sociais Oficiais
+              </h2>
+              <div className="grid grid-cols-2 gap-3">
+                {['Facebook', 'Instagram', 'X / Twitter', 'YouTube', 'LinkedIn', 'TikTok'].map((rede) => (
+                  <button
+                    key={rede}
+                    className="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg transition-colors duration-200 text-sm font-medium"
+                  >
+                    {rede}
+                  </button>
+                ))}
+              </div>
+            </section>
+          </div>
+
+          {/* Seção de Unidades */}
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-2xl font-semibold text-gray-700 mb-6">
+              Unidades do Complexo HCFMUSP
+            </h2>
+            <div className="space-y-4 max-h-96 overflow-y-auto pr-2">
+              {unidades.map((unidade, index) => (
+                <button
+                  key={index}
+                  onClick={() => abrirModal(unidade)}
+                  className="w-full text-left border-b border-gray-200 pb-4 last:border-b-0 hover:bg-gray-50 p-3 rounded-lg transition-colors duration-200 group"
+                >
+                  <h3 className="font-semibold text-gray-800 mb-1 group-hover:text-blue-600 transition-colors">
+                    {unidade.nome}
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {unidade.endereco}
+                  </p>
+                  <span className="text-blue-600 text-sm font-medium mt-1 inline-block group-hover:underline">
+                    Ver detalhes e localização →
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
-      </section>
 
-      {/* Seção de redes sociais */}
-      <section className="socials bg-white shadow-md rounded-2xl p-6">
-        <h2 className="text-2xl font-bold text-[#004aad] mb-6">Nossas Redes</h2>
-        <div className="flex gap-6">
-          <a
-            href="https://www.instagram.com/hospitalhcfmusp/"
-            aria-label="Instagram HCFMUSP"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#004aad] hover:text-[#ffd700] transition-colors"
+        {/* Modal */}
+        {modalAberto && unidadeSelecionada && (
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+            onClick={handleBackdropClick}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={36}
-              height={36}
-              fill="currentColor"
-              viewBox="0 0 16 16"
-            >
-              <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm4.271 4.09a.96.96 0 1 1-1.92 0 .96.96 0 0 1 1.92 0z" />
-            </svg>
-          </a>
+            <div className="bg-white rounded-lg shadow-xl max-w-6xl w-full max-h-[90vh] overflow-hidden animate-fade-in">
+              {/* Cabeçalho do Modal */}
+              <div className="bg-blue-600 text-white p-6">
+                <div className="flex justify-between items-start">
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold pr-4">{unidadeSelecionada.nome}</h3>
+                    <p className="text-blue-100 mt-1">{unidadeSelecionada.endereco}</p>
+                  </div>
+                  <button
+                    onClick={fecharModal}
+                    className="text-white hover:text-gray-200 text-2xl font-bold bg-blue-700 hover:bg-blue-800 w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+                  >
+                    ×
+                  </button>
+                </div>
+              </div>
 
-          <a
-            href="https://www.linkedin.com/company/hcfmusp/"
-            aria-label="LinkedIn HCFMUSP"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#004aad] hover:text-[#ffd700] transition-colors"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={36}
-              height={36}
-              fill="currentColor"
-              viewBox="0 0 16 16"
-            >
-              <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
-            </svg>
-          </a>
-        </div>
-      </section>
-    </main>
+              {/* Conteúdo do Modal */}
+              <div className="p-6 overflow-y-auto max-h-[calc(90vh-200px)]">
+                <div className="grid lg:grid-cols-2 gap-6">
+                  {/* Informações da Unidade */}
+                  <div className="space-y-6">
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-800 mb-3 text-lg">Informações de Contato</h4>
+                      
+                      <div className="space-y-4">
+                        <div className="flex items-start space-x-3">
+                          <svg className="w-5 h-5 text-gray-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          <div>
+                            <p className="font-medium text-gray-700">Endereço</p>
+                            <p className="text-gray-600">{unidadeSelecionada.endereco}</p>
+                          </div>
+                        </div>
+
+                        {unidadeSelecionada.telefone && (
+                          <div className="flex items-start space-x-3">
+                            <svg className="w-5 h-5 text-gray-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <div>
+                              <p className="font-medium text-gray-700">Telefone</p>
+                              <a 
+                                href={`tel:${unidadeSelecionada.telefone}`} 
+                                className="text-blue-600 hover:text-blue-800 underline"
+                              >
+                                {unidadeSelecionada.telefone}
+                              </a>
+                            </div>
+                          </div>
+                        )}
+
+                        {unidadeSelecionada.email && (
+                          <div className="flex items-start space-x-3">
+                            <svg className="w-5 h-5 text-gray-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <div>
+                              <p className="font-medium text-gray-700">E-mail</p>
+                              <a 
+                                href={`mailto:${unidadeSelecionada.email}`} 
+                                className="text-blue-600 hover:text-blue-800 underline"
+                              >
+                                {unidadeSelecionada.email}
+                              </a>
+                            </div>
+                          </div>
+                        )}
+
+                        {unidadeSelecionada.horario && (
+                          <div className="flex items-start space-x-3">
+                            <svg className="w-5 h-5 text-gray-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                              <p className="font-medium text-gray-700">Horário de Atendimento</p>
+                              <p className="text-gray-600">{unidadeSelecionada.horario}</p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => abrirNoGoogleMaps(unidadeSelecionada.endereco)}
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 w-full flex items-center justify-center space-x-2 shadow-md hover:shadow-lg"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                      <span>Abrir no Google Maps</span>
+                    </button>
+                  </div>
+
+                  {/* Mapa do Google Maps */}
+                  <div className="rounded-lg overflow-hidden shadow-lg h-80 lg:h-auto">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      frameBorder="0"
+                      style={{ border: 0, minHeight: '320px' }}
+                      src={getGoogleMapsUrl(unidadeSelecionada.endereco)}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title={`Localização de ${unidadeSelecionada.nome}`}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Rodapé do Modal */}
+              <div className="bg-gray-100 px-6 py-4 border-t border-gray-200">
+                <div className="flex justify-between items-center">
+                  <p className="text-gray-600 text-sm">
+                    Use o mapa para visualizar a localização exata da unidade
+                  </p>
+                  <button
+                    onClick={fecharModal}
+                    className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-6 rounded-lg transition-colors duration-200"
+                  >
+                    Fechar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 
-export default Contatos;
+export default Contato;

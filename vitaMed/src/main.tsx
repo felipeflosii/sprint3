@@ -1,35 +1,29 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
-import "./index.css";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import App from './App.tsx'
+import './index.css'
 
-// Obrigatórias
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from './routes/Home/index.tsx';
-import Integrantes from './routes/Integrantes/index.tsx';
-import Contatos from './routes/Contatos/index.tsx';
-import Sobre from './routes/Sobre/index.tsx';
+import Home from './routes/Home';
+import SobreNos from './routes/Sobre';
+import CentralAjuda from './routes/Ajuda';
+import Contato from './routes/Contatos';
+import Integrantes from './routes/Integrantes';
+import Error from './routes/Error';
 
-// Adicionais
-import Paciente from './routes/Paciente/index.tsx';
-import Ensino from './routes/Ensino/index.tsx';
-import Error from './routes/Paciente/index.tsx';
-import Unidades from './routes/Unidades/index.tsx';
-
-const router = createBrowserRouter([
-  {path:"/", element:<App/>, errorElement:<Error/>, children:[
-    {path:"/", element: <Home/>},
-    {path:"/paciente", element: <Paciente/>},
-    {path:"/integrantes", element: <Integrantes/>},
-    {path:"/ensino", element: <Ensino/>},
-    {path:"/contatos", element: <Contatos/>},
-    {path:"/sobre", element: <Sobre/>},
-    {path:"/unidades", element: <Unidades/>},
-  ]}
-]);
-
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<Home />} />
+          <Route path="sobre-nos" element={<SobreNos />} />
+          <Route path="central-ajuda" element={<CentralAjuda />} />
+          <Route path="contato" element={<Contato />} />
+          <Route path="integrantes" element={<Integrantes />} />
+          <Route path="*" element={<Error />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>,
 )
