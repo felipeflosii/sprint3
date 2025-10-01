@@ -2,94 +2,89 @@ import React, { FC } from "react";
 
 const Contatos: FC = () => {
   return (
-    <main>
+    <main className="font-poppins bg-[#f9f9f9] text-gray-800 px-6 py-10">
       {/* Seção de mapa */}
-      <section className="map-container">
-        <h2>Localização</h2>
+      <section className="map-container bg-white shadow-md rounded-2xl p-6 mb-10">
+        <h2 className="text-2xl font-bold text-[#004aad] mb-4">Localização</h2>
         <iframe
           title="Hospital das Clínicas"
           width="100%"
           height={450}
+          className="rounded-xl mb-4"
           style={{ border: 0 }}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.858434573572!2d-46.669848!3d-23.55703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5b2b4b4b4b4b%3A0x94ce5b2b4b4b4b4b!2sHospital%20das%20Cl%C3%ADnicas%20da%20USP!5e0!3m2!1spt-BR!2sbr!4v1633021223456!5m2!1spt-BR!2sbr"
         />
-        <p>
+        <p className="text-gray-700">
           <strong>Endereço:</strong> Av. Dr. Enéas de Carvalho Aguiar, 255 – Cerqueira César, São Paulo, SP – CEP 05403-000
         </p>
       </section>
 
       {/* Seção de contatos */}
-      <section className="contatos">
-        <h2>Contatos</h2>
-        <p>
-          <strong>Telefone Geral:</strong> (11) 2661-0000
-        </p>
-        <p>
-          <strong>E-mail Geral:</strong>{" "}
-          <a href="mailto:superintendencia.pa@hc.fm.usp.br">
-            superintendencia.pa@hc.fm.usp.br
-          </a>
-        </p>
-        <p>
-          <strong>Central de Atendimento:</strong> (11) 2661-7025
-        </p>
-        <p>
-          <strong>Ouvidoria:</strong>{" "}
-          <a href="mailto:ouvidoria.umarizal.imrea@hc.fm.usp.br">
-            ouvidoria.umarizal.imrea@hc.fm.usp.br
-          </a>
-        </p>
-        <p>
-          <strong>Central de Agendamento:</strong> (11) 3066-3000
-        </p>
-        <p>
-          <strong>Central de Triagem:</strong> (11) 3069-7660
-        </p>
-        <p>
-          <strong>Instituto de Psiquiatria - Autorizações:</strong>{" "}
-          (11) 2661-9825 / (11) 2661-9829
-        </p>
-        <p>
-          <strong>E-mail de Autorizações:</strong>{" "}
-          <a href="mailto:autorizacaoss.ipq@hc.fm.usp.br">
-            autorizacaoss.ipq@hc.fm.usp.br
-          </a>
-        </p>
-        <p>
-          <strong>Instituto do Coração (InCor):</strong>{" "}
-          <a href="mailto:incor@hc.fm.usp.br">incor@hc.fm.usp.br</a>
-        </p>
-        <p>
-          <strong>Disciplina de Cirurgia Geral e Trauma:</strong>{" "}
-          <a href="mailto:trauma.ichc@hc.fm.usp.br">trauma.ichc@hc.fm.usp.br</a>
-        </p>
-        <p>
-          <strong>Central de Atendimento do HCX Fmusp:</strong> (11) 2661-7025
-        </p>
-        <p>
-          <strong>E-mail do HCX Fmusp:</strong>{" "}
-          <a href="mailto:hcxonline.hcx@hc.fm.usp.br">
-            hcxonline.hcx@hc.fm.usp.br
-          </a>
-        </p>
+      <section className="contatos bg-white shadow-md rounded-2xl p-6 mb-10">
+        <h2 className="text-2xl font-bold text-[#004aad] mb-6">Contatos</h2>
+        <div className="space-y-3 text-gray-700">
+          <p><strong>Telefone Geral:</strong> (11) 2661-0000</p>
+          <p>
+            <strong>E-mail Geral:</strong>{" "}
+            <a href="mailto:superintendencia.pa@hc.fm.usp.br" className="text-[#004aad] hover:text-[#ffd700]">
+              superintendencia.pa@hc.fm.usp.br
+            </a>
+          </p>
+          <p><strong>Central de Atendimento:</strong> (11) 2661-7025</p>
+          <p>
+            <strong>Ouvidoria:</strong>{" "}
+            <a href="mailto:ouvidoria.umarizal.imrea@hc.fm.usp.br" className="text-[#004aad] hover:text-[#ffd700]">
+              ouvidoria.umarizal.imrea@hc.fm.usp.br
+            </a>
+          </p>
+          <p><strong>Central de Agendamento:</strong> (11) 3066-3000</p>
+          <p><strong>Central de Triagem:</strong> (11) 3069-7660</p>
+          <p><strong>Instituto de Psiquiatria - Autorizações:</strong> (11) 2661-9825 / (11) 2661-9829</p>
+          <p>
+            <strong>E-mail de Autorizações:</strong>{" "}
+            <a href="mailto:autorizacaoss.ipq@hc.fm.usp.br" className="text-[#004aad] hover:text-[#ffd700]">
+              autorizacaoss.ipq@hc.fm.usp.br
+            </a>
+          </p>
+          <p>
+            <strong>Instituto do Coração (InCor):</strong>{" "}
+            <a href="mailto:incor@hc.fm.usp.br" className="text-[#004aad] hover:text-[#ffd700]">
+              incor@hc.fm.usp.br
+            </a>
+          </p>
+          <p>
+            <strong>Disciplina de Cirurgia Geral e Trauma:</strong>{" "}
+            <a href="mailto:trauma.ichc@hc.fm.usp.br" className="text-[#004aad] hover:text-[#ffd700]">
+              trauma.ichc@hc.fm.usp.br
+            </a>
+          </p>
+          <p><strong>Central de Atendimento do HCX Fmusp:</strong> (11) 2661-7025</p>
+          <p>
+            <strong>E-mail do HCX Fmusp:</strong>{" "}
+            <a href="mailto:hcxonline.hcx@hc.fm.usp.br" className="text-[#004aad] hover:text-[#ffd700]">
+              hcxonline.hcx@hc.fm.usp.br
+            </a>
+          </p>
+        </div>
       </section>
 
       {/* Seção de redes sociais */}
-      <section className="socials">
-        <h2>Nossas Redes</h2>
-        <div style={{ display: "flex", gap: 10 }}>
+      <section className="socials bg-white shadow-md rounded-2xl p-6">
+        <h2 className="text-2xl font-bold text-[#004aad] mb-6">Nossas Redes</h2>
+        <div className="flex gap-6">
           <a
             href="https://www.instagram.com/hospitalhcfmusp/"
             aria-label="Instagram HCFMUSP"
             target="_blank"
             rel="noopener noreferrer"
+            className="text-[#004aad] hover:text-[#ffd700] transition-colors"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width={32}
-              height={32}
+              width={36}
+              height={36}
               fill="currentColor"
               viewBox="0 0 16 16"
             >
@@ -102,11 +97,12 @@ const Contatos: FC = () => {
             aria-label="LinkedIn HCFMUSP"
             target="_blank"
             rel="noopener noreferrer"
+            className="text-[#004aad] hover:text-[#ffd700] transition-colors"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width={32}
-              height={32}
+              width={36}
+              height={36}
               fill="currentColor"
               viewBox="0 0 16 16"
             >
