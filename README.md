@@ -8,20 +8,20 @@ O **vitaMed** é um projeto desenvolvido para o Challenge PHC com o objetivo de 
 ## Estrutura do Projeto
 
 vitaMed/
-├── node_modules/ <- Dependências do projeto
+├── node_modules/
 ├── src/
 │ ├── assets/
-│ │ ├── img/ <- Imagens do projeto (logo, integrantes)
-│ │ ├── index.css <- Estilos globais
-│ │ └── main.tsx <- Entrada principal do React
-│ ├── components/ <- Componentes reutilizáveis
+│ │ ├── img/ 
+│ │ ├── index.css 
+│ │ └── main.tsx 
+│ ├── components/
 │ │ ├── Cabecalho/
 │ │ │ └── Cabecalho.tsx
 │ │ ├── Menu/
 │ │ │ └── Menu.tsx
 │ │ └── Rodape/
 │ │ └── Rodape.tsx
-│ ├── routes/ <- Páginas do sistema
+│ ├── routes/
 │ │ ├── Ajuda/
 │ │ │ └── index.tsx
 │ │ ├── Contatos/
@@ -40,12 +40,12 @@ vitaMed/
 ├── package.json
 ├── package-lock.json
 ├── postcss.config.cjs
-├── README.md
 ├── tailwind.config.js
 ├── tsconfig.app.json
 ├── tsconfig.json
 ├── tsconfig.node.json
 └── vite.config.ts
+├── README.md
 
 
 ## Tecnologias Utilizadas
@@ -67,6 +67,10 @@ vitaMed/
 ## Link do repositório do projeto
 
 https://github.com/felipeflosii/sprint3.git
+
+## Link do video de apresentação do projeto no YouTube
+
+https://youtu.be/PhNh0ukZ97g
 
 ## Como Rodar o Projeto
 
