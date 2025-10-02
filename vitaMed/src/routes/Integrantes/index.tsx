@@ -10,15 +10,15 @@ import LogoHC from '../../assets/img/logo2hc.png';
 const Integrantes: React.FC = () => {
   const integrantes = [
     {
-      nome: "Arthur Brito",
+      nome: "Arthur Brito da Silva ㅤㅤㅤ RM562085 - 1TDSPG",
       foto: ArthurFoto,
-      cargo: "Desenvolvedor Full Stack & Líder de Projeto",
+      cargo: "Desenvolvedor Full Stack & UX/UI Designer",
       descricao: "Responsável pela arquitetura do sistema e integração entre frontend e backend. Especialista em React, TypeScript e Node.js.",
-      habilidades: ["React", "TypeScript", "Node.js", "PostgreSQL", "AWS"],
+      habilidades: ["React", "TypeScript", "Node.js", "OracleSQL", "UX/UI Design"],
       contato: {
-        email: "arthur.brito@fiap.com.br",
-        linkedin: "arthurbrito",
-        github: "arthurbrito"
+        email: "britoarthur150@gmail.com",
+        linkedin: "https://www.linkedin.com/in/arthur-brito-da-silva-06658b276/",
+        github: "https://github.com/thubrito"
       },
       contribuicoes: [
         "Arquitetura do sistema",
@@ -28,15 +28,15 @@ const Integrantes: React.FC = () => {
       ]
     },
     {
-      nome: "Luiz Felipe Flosl",
+      nome: "Luiz Felipe Flosi dos Santos RM563197 - 1TDSPG",
       foto: LuizFoto,
-      cargo: "Desenvolvedor Frontend & UX/UI Designer",
+      cargo: "Desenvolvedor Frontend & Líder de Projeto",
       descricao: "Focado na experiência do usuário e interface visual. Desenvolve componentes React com Tailwind CSS e garante a acessibilidade.",
       habilidades: ["React", "Tailwind CSS", "Figma", "UX/UI Design", "JavaScript"],
       contato: {
-        email: "luiz.flosl@fiap.com.br",
-        linkedin: "luizflosl",
-        github: "luizflosl"
+        email: "felipeflosi@gmail.com",
+        linkedin: "https://www.linkedin.com/in/felipeflosii/",
+        github: "https://github.com/felipeflosii"
       },
       contribuicoes: [
         "Design da interface",
@@ -46,15 +46,15 @@ const Integrantes: React.FC = () => {
       ]
     },
     {
-      nome: "Pedro Brum",
+      nome: "Pedro Henrique Brum Lopes RM561780 - 1TDSPG",
       foto: PedroFoto,
-      cargo: "Desenvolvedor Backend & DevOps",
+      cargo: "Desenvolvedor Backend & ChatBot Specialist",
       descricao: "Gerencia a infraestrutura, banco de dados e APIs. Garante a segurança e performance do sistema.",
-      habilidades: ["Python", "Django", "Docker", "MySQL", "Linux"],
+      habilidades: ["Python", "Django", "Docker", "MySQL", "Mac"],
       contato: {
-        email: "pedro.brum@fiap.com.br",
-        linkedin: "pedrobrum",
-        github: "pedrobrum"
+        email: "pbrum191@gmail.com",
+        linkedin: "https://www.linkedin.com/in/pedro-brum-66a31b326/",
+        github: "https://github.com/PedroBrum-DEV"
       },
       contribuicoes: [
         "API Restful",
@@ -62,6 +62,7 @@ const Integrantes: React.FC = () => {
         "Deploy e DevOps",
         "Segurança da aplicação"
       ]
+      
     }
   ];
 
@@ -70,7 +71,7 @@ const Integrantes: React.FC = () => {
     { nome: "TypeScript", icone: "🔷", categoria: "Linguagem" },
     { nome: "Tailwind CSS", icone: "🎨", categoria: "Estilização" },
     { nome: "Node.js", icone: "🟢", categoria: "Backend" },
-    { nome: "PostgreSQL", icone: "🐘", categoria: "Banco de Dados" },
+    { nome: "OracleSQL", icone: "🐘", categoria: "Banco de Dados" },
     { nome: "Docker", icone: "🐳", categoria: "DevOps" },
     { nome: "Figma", icone: "🎯", categoria: "Design" },
     { nome: "Git", icone: "📚", categoria: "Versionamento" }
@@ -120,11 +121,11 @@ const Integrantes: React.FC = () => {
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Início:</span>
-                  <span className="font-semibold">Fevereiro 2024</span>
+                  <span className="font-semibold">Março 2025</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Previsão de Conclusão:</span>
-                  <span className="font-semibold">Junho 2024</span>
+                  <span className="font-semibold">Novembro 2025</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Status:</span>

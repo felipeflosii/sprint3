@@ -10,17 +10,17 @@ import PedroFoto from '../../assets/img/brum.jpeg';
 const Sobre: React.FC = () => {
   const timeline = [
     {
-      ano: "2023",
+      ano: "Março 2025",
       titulo: "Identificação do Problema",
       descricao: "Observamos os altos índices de absenteísmo devido à dificuldade com ferramentas digitais na saúde."
     },
     {
-      ano: "2024",
+      ano: "Março 2025",
       titulo: "Parceria com HC-FMUSP",
       descricao: "Fechamos parceria com o Hospital das Clínicas para desenvolver soluções reais."
     },
     {
-      ano: "2024",
+      ano: "Maio 2025",
       titulo: "Desenvolvimento do Projeto",
       descricao: "Início do desenvolvimento da plataforma Saúde Digital com foco em usabilidade."
     },
@@ -65,8 +65,8 @@ const Sobre: React.FC = () => {
   ];
 
   const equipePreview = [
-    { nome: "Arthur Brito", foto: ArthurFoto, cargo: "Líder de Projeto" },
-    { nome: "Luiz Felipe Flosl", foto: LuizFoto, cargo: "Designer UX/UI" },
+    { nome: "Arthur Brito", foto: ArthurFoto, cargo: "Designer UX/UI" },
+    { nome: "Luiz Felipe Flosl", foto: LuizFoto, cargo: "Líder de Projeto" },
     { nome: "Pedro Brum", foto: PedroFoto, cargo: "DevOps" }
   ];
 

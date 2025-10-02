@@ -59,12 +59,12 @@ const Home: React.FC = () => {
     }
   ];
 
-  // Estatísticas (exemplo)
+  // Estatísticas
   const estatisticas = [
-    { numero: "10+", label: "Unidades Hospitalares" },
+    { numero: "8", label: "Unidades Hospitalares" },
     { numero: "24/7", label: "Atendimento Emergencial" },
-    { numero: "1000+", label: "Pacientes Atendidos" },
-    { numero: "95%", label: "Satisfação dos Usuários" }
+    { numero: "7M+", label: "Pacientes Atendidos" },
+    { numero: "97,6%", label: "Satisfação dos Usuários" }
   ];
 
   return (

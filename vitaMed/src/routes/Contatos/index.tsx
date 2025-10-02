@@ -16,26 +16,22 @@ const Contato: React.FC = () => {
   // Sua API Key do Google Maps
   const GOOGLE_MAPS_API_KEY = 'AIzaSyDYhuJ_0yW-Zo6kYwFpBVnRkvarSOpjw4A';
 
-  // Função para abrir o modal com a unidade selecionada
   const abrirModal = (unidade: Unidade) => {
     setUnidadeSelecionada(unidade);
     setModalAberto(true);
   };
 
-  // Função para fechar o modal
   const fecharModal = () => {
     setModalAberto(false);
     setUnidadeSelecionada(null);
   };
 
-  // Fechar modal ao clicar fora
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       fecharModal();
     }
   };
 
-  // Lista de unidades com dados completos
   const unidades: Unidade[] = [
     {
       nome: "Instituto Central (ICHC)",
@@ -102,13 +98,11 @@ const Contato: React.FC = () => {
     }
   ];
 
-  // Função para gerar URL do Google Maps Embed
   const getGoogleMapsUrl = (endereco: string) => {
     const query = encodeURIComponent(`${endereco}, São Paulo, Brasil`);
     return `https://www.google.com/maps/embed/v1/place?key=${GOOGLE_MAPS_API_KEY}&q=${query}&zoom=16`;
   };
 
-  // Função para abrir no Google Maps externo
   const abrirNoGoogleMaps = (endereco: string) => {
     const query = encodeURIComponent(`${endereco}, São Paulo, Brasil`);
     window.open(`https://www.google.com/maps/search/?api=1&query=${query}`, '_blank');
@@ -144,14 +138,54 @@ const Contato: React.FC = () => {
                 Redes Sociais Oficiais
               </h2>
               <div className="grid grid-cols-2 gap-3">
-                {['Facebook', 'Instagram', 'X / Twitter', 'YouTube', 'LinkedIn', 'TikTok'].map((rede) => (
-                  <button
-                    key={rede}
-                    className="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg transition-colors duration-200 text-sm font-medium"
-                  >
-                    {rede}
-                  </button>
-                ))}
+                <a
+                  href="https://www.facebook.com/hospitaldasclinicasdafmusp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg transition-colors duration-200 text-sm font-medium text-center"
+                >
+                  Facebook
+                </a>
+                <a
+                  href="https://www.instagram.com/hospitalhcfmusp/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg transition-colors duration-200 text-sm font-medium text-center"
+                >
+                  Instagram
+                </a>
+                <a
+                  href="https://x.com/hospitalHCFMUSP"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg transition-colors duration-200 text-sm font-medium text-center"
+                >
+                  X / Twitter
+                </a>
+                <a
+                  href="https://www.youtube.com/@hospitaldasclinicasdafmusp3623"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg transition-colors duration-200 text-sm font-medium text-center"
+                >
+                  YouTube
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/hcfmusp/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg transition-colors duration-200 text-sm font-medium text-center"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://www.tiktok.com/search/user?q=Hospital%20das%20cl%C3%ADnicas&t=1759365163913"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded-lg transition-colors duration-200 text-sm font-medium text-center"
+                >
+                  TikTok
+                </a>
               </div>
             </section>
           </div>
@@ -209,11 +243,9 @@ const Contato: React.FC = () => {
               {/* Conteúdo do Modal */}
               <div className="p-6 overflow-y-auto max-h-[calc(90vh-200px)]">
                 <div className="grid lg:grid-cols-2 gap-6">
-                  {/* Informações da Unidade */}
                   <div className="space-y-6">
                     <div className="bg-gray-50 rounded-lg p-4">
                       <h4 className="font-semibold text-gray-800 mb-3 text-lg">Informações de Contato</h4>
-                      
                       <div className="space-y-4">
                         <div className="flex items-start space-x-3">
                           <svg className="w-5 h-5 text-gray-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -233,12 +265,7 @@ const Contato: React.FC = () => {
                             </svg>
                             <div>
                               <p className="font-medium text-gray-700">Telefone</p>
-                              <a 
-                                href={`tel:${unidadeSelecionada.telefone}`} 
-                                className="text-blue-600 hover:text-blue-800 underline"
-                              >
-                                {unidadeSelecionada.telefone}
-                              </a>
+                              <a href={`tel:${unidadeSelecionada.telefone}`} className="text-blue-600 hover:text-blue-800 underline">{unidadeSelecionada.telefone}</a>
                             </div>
                           </div>
                         )}
@@ -250,12 +277,7 @@ const Contato: React.FC = () => {
                             </svg>
                             <div>
                               <p className="font-medium text-gray-700">E-mail</p>
-                              <a 
-                                href={`mailto:${unidadeSelecionada.email}`} 
-                                className="text-blue-600 hover:text-blue-800 underline"
-                              >
-                                {unidadeSelecionada.email}
-                              </a>
+                              <a href={`mailto:${unidadeSelecionada.email}`} className="text-blue-600 hover:text-blue-800 underline">{unidadeSelecionada.email}</a>
                             </div>
                           </div>
                         )}
@@ -278,14 +300,11 @@ const Contato: React.FC = () => {
                       onClick={() => abrirNoGoogleMaps(unidadeSelecionada.endereco)}
                       className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 w-full flex items-center justify-center space-x-2 shadow-md hover:shadow-lg"
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
                       <span>Abrir no Google Maps</span>
                     </button>
                   </div>
 
-                  {/* Mapa do Google Maps */}
+                  {/* Mapa */}
                   <div className="rounded-lg overflow-hidden shadow-lg h-80 lg:h-auto">
                     <iframe
                       width="100%"
@@ -294,26 +313,8 @@ const Contato: React.FC = () => {
                       style={{ border: 0, minHeight: '320px' }}
                       src={getGoogleMapsUrl(unidadeSelecionada.endereco)}
                       allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title={`Localização de ${unidadeSelecionada.nome}`}
-                    />
+                    ></iframe>
                   </div>
-                </div>
-              </div>
-
-              {/* Rodapé do Modal */}
-              <div className="bg-gray-100 px-6 py-4 border-t border-gray-200">
-                <div className="flex justify-between items-center">
-                  <p className="text-gray-600 text-sm">
-                    Use o mapa para visualizar a localização exata da unidade
-                  </p>
-                  <button
-                    onClick={fecharModal}
-                    className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-6 rounded-lg transition-colors duration-200"
-                  >
-                    Fechar
-                  </button>
                 </div>
               </div>
             </div>
