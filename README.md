@@ -64,12 +64,15 @@ vitaMed/
 - Componentes reutilizáveis: Cabeçalho, Menu e Rodapé.  
 - Integração com imagens e ícones do projeto.  
 
+## Link do repositório do projeto
+
+https://github.com/felipeflosii/sprint3.git
 
 ## Como Rodar o Projeto
 
 1. Clone o repositório:
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/felipeflosii/sprint3.git
 Entre na pasta do projeto:
 
 bash
