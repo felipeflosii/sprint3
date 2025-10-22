@@ -69,36 +69,62 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
-      {/* Hero Section */}
-      <section className="relative bg-blue-600 text-white py-20">
+      {/* Call to Action Final */}
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4 text-center">
-          <div className="flex justify-center mb-6">
-            <img 
-              src={LogoHC} 
-              alt="Hospital das Clínicas" 
-              className="h-24 w-24 object-contain bg-white rounded-full p-2"
-            />
-          </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Saúde Digital
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
-            Inovação e empatia na saúde digital. Tornando o acesso à saúde mais fácil, 
-            intuitivo e acessível para todos.
+          <h2 className="text-4xl font-bold text-gray-800 mb-6">
+            Pronto para uma experiência melhor em saúde digital?
+          </h2>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Explore todas as funcionalidades que preparamos para você
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              to="/sobre-nos"
-              className="bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 px-8 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+              to="/central-ajuda"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
             >
-              Conheça Nossa História
+              Começar Agora
             </Link>
             <Link
-              to="/central-ajuda"
-              className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
+              to="/sobre-nos"
+              className="border-2 border-gray-300 text-gray-700 hover:border-gray-400 font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
             >
-              Precisa de Ajuda?
+              Saber Mais
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Recursos Principais */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
+            Nossos Serviços
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {recursos.map((recurso, index) => (
+              <Link
+                key={index}
+                to={recurso.link}
+                className="group"
+              >
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:transform group-hover:-translate-y-2 h-full">
+                  <div className={`h-2 bg-gradient-to-r ${recurso.cor}`}></div>
+                  <div className="p-6">
+                    <div className="text-3xl mb-4">{recurso.icone}</div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                      {recurso.titulo}
+                    </h3>
+                    <p className="text-gray-600 mb-4">
+                      {recurso.descricao}
+                    </p>
+                    <span className="text-blue-600 font-semibold group-hover:underline">
+                      Acessar →
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -152,6 +178,46 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* Contato Rápido */}
+      <section className="py-16 bg-blue-600 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-4">Precisa de Ajuda?</h2>
+          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            Nossa equipe está pronta para ajudar você. Entre em contato através dos nossos canais.
+          </p>
+          
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <div className="text-2xl mb-2">📞</div>
+              <h3 className="font-semibold mb-2">Telefone</h3>
+              <p className="text-blue-100">(11) 2661-1048</p>
+              <p className="text-blue-100">(11) 2661-1561</p>
+            </div>
+            
+            <div>
+              <div className="text-2xl mb-2">✉️</div>
+              <h3 className="font-semibold mb-2">E-mail</h3>
+              <p className="text-blue-100">ouvidoria.geral@hc.fm.usp.br</p>
+            </div>
+            
+            <div>
+              <div className="text-2xl mb-2">🕒</div>
+              <h3 className="font-semibold mb-2">Atendimento</h3>
+              <p className="text-blue-100">Emergência: 24 horas</p>
+              <p className="text-blue-100">Consultas: 7h às 18h</p>
+            </div>
+          </div>
+
+          <Link
+            to="/contato"
+            className="bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 px-8 rounded-lg transition-colors duration-200 inline-flex items-center space-x-2"
+          >
+            <span>Ver Todos os Contatos</span>
+            <span>→</span>
+          </Link>
+        </div>
+      </section>
+
       {/* Estatísticas */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -168,40 +234,6 @@ const Home: React.FC = () => {
                   {estatistica.label}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Recursos Principais */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
-            Nossos Serviços
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {recursos.map((recurso, index) => (
-              <Link
-                key={index}
-                to={recurso.link}
-                className="group"
-              >
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:transform group-hover:-translate-y-2 h-full">
-                  <div className={`h-2 bg-gradient-to-r ${recurso.cor}`}></div>
-                  <div className="p-6">
-                    <div className="text-3xl mb-4">{recurso.icone}</div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                      {recurso.titulo}
-                    </h3>
-                    <p className="text-gray-600 mb-4">
-                      {recurso.descricao}
-                    </p>
-                    <span className="text-blue-600 font-semibold group-hover:underline">
-                      Acessar →
-                    </span>
-                  </div>
-                </div>
-              </Link>
             ))}
           </div>
         </div>
@@ -248,73 +280,7 @@ const Home: React.FC = () => {
             </Link>
           </div>
         </div>
-      </section>
-
-      {/* Contato Rápido */}
-      <section className="py-16 bg-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-4">Precisa de Ajuda?</h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Nossa equipe está pronta para ajudar você. Entre em contato através dos nossos canais.
-          </p>
-          
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <div className="text-2xl mb-2">📞</div>
-              <h3 className="font-semibold mb-2">Telefone</h3>
-              <p className="text-blue-100">(11) 2661-1048</p>
-              <p className="text-blue-100">(11) 2661-1561</p>
-            </div>
-            
-            <div>
-              <div className="text-2xl mb-2">✉️</div>
-              <h3 className="font-semibold mb-2">E-mail</h3>
-              <p className="text-blue-100">ouvidoria.geral@hc.fm.usp.br</p>
-            </div>
-            
-            <div>
-              <div className="text-2xl mb-2">🕒</div>
-              <h3 className="font-semibold mb-2">Atendimento</h3>
-              <p className="text-blue-100">Emergência: 24 horas</p>
-              <p className="text-blue-100">Consultas: 7h às 18h</p>
-            </div>
-          </div>
-
-          <Link
-            to="/contato"
-            className="bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 px-8 rounded-lg transition-colors duration-200 inline-flex items-center space-x-2"
-          >
-            <span>Ver Todos os Contatos</span>
-            <span>→</span>
-          </Link>
-        </div>
-      </section>
-
-      {/* Call to Action Final */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-gray-800 mb-6">
-            Pronto para uma experiência melhor em saúde digital?
-          </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Explore todas as funcionalidades que preparamos para você
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/central-ajuda"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
-            >
-              Começar Agora
-            </Link>
-            <Link
-              to="/sobre-nos"
-              className="border-2 border-gray-300 text-gray-700 hover:border-gray-400 font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
-            >
-              Saber Mais
-            </Link>
-          </div>
-        </div>
-      </section>
+      </section>      
     </div>
   );
 };
