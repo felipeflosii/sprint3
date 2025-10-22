@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// Importando imagens (ajuste os caminhos conforme necessário)
 import LogoHC from '../../assets/img/logo2hc.png';
 import ArthurFoto from '../../assets/img/brito.jpeg';
 import LuizFoto from '../../assets/img/flosi.jpeg';
