@@ -10,6 +10,7 @@ import CentralAjuda from './routes/Ajuda';
 import Contato from './routes/Contatos';
 import Integrantes from './routes/Integrantes';
 import Error from './routes/Error';
+import Login from './routes/Login';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="sobre-nos" element={<SobreNos />} />
+          <Route path="login" element={<Login />} />
           <Route path="central-ajuda" element={<CentralAjuda />} />
           <Route path="contato" element={<Contato />} />
           <Route path="integrantes" element={<Integrantes />} />
