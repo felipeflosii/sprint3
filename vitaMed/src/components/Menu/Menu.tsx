@@ -11,6 +11,7 @@ const Menu: React.FC = () => {
     { path: '/central-ajuda', label: 'Central de Ajuda' },
     { path: '/contato', label: 'Contato' },
     { path: '/integrantes', label: 'Integrantes' },
+    { path: '/usuario', label: 'Minhas consultas' },
   ];
 
   return (
